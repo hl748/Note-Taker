@@ -18,13 +18,13 @@ server.get("/api/notes", function(req, res) {
     })
 })
 
-server.post("/api/notes", function(req, res) {
-    res.sendFile(path.join(_dirname, "index.html"))
-})
+// server.post("/api/notes", function(req, res) {
+//     res.sendFile(path.join(_dirname, "index.html"))
+// })
 
-server.get("/notes", function(req, res) {
-    res.sendFile(path.join(__dirname, "notes.html"))
-})
+// server.get("/notes", function(req, res) {
+//     res.sendFile(path.join(__dirname, "notes.html"))
+// })
 
 server.listen(PORT, function () {
     console.log("App is listening on port " + PORT)
