@@ -3,7 +3,6 @@ const express = require("express");
 const server = express();
 const path = require("path")
 const PORT = 3010
-const index = require("index.html")
 
 server.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "index.html"))
