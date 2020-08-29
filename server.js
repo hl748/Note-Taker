@@ -12,20 +12,30 @@ server.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "notes.html"))
 })
 
-server.get("/api/notes", function(req, res) {
-    fs.writeFile("db.json", index[0], function() {
-        
-    })
-})
+app.get("/api/notes", (req, res) => {
+  res.json(JSON.parse(fs.readFileSync("./db/db.json", "utf8")));
+});
 
-// server.post("/api/notes", function(req, res) {
-//     res.sendFile(path.join(_dirname, "index.html"))
-// })
+app.post("/api/notes", (req, res) => {
+  req.body.id = Math.floor(Math.random() * 100000000);
+  let newNote = req.body;
 
-// server.get("/notes", function(req, res) {
-//     res.sendFile(path.join(__dirname, "notes.html"))
-// })
+  const savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8").toString());
+  savedNotes.push(newNote);
+  fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes));
+  res.status(200).json({added: true});
 
-server.listen(PORT, function () {
-    console.log("App is listening on port " + PORT)
-})
+});
+
+app.delete("/api/notes/:id", (req, res) => {
+  let id = parseInt(req.params.id);
+  console.log(id);
+
+
+  let savedNotes = JSON.parse(fs.readFileSync("./db/db.json").toString());
+
+  const notes = savedNotes.filter((note) => note.id !== id);
+  console.log(notes);
+  fs.writeFileSync("./db/db.json", JSON.stringify(notes));
+  res.json();
+});
