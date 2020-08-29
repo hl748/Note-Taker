@@ -12,11 +12,11 @@ server.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "notes.html"))
 })
 
-app.get("/api/notes", (req, res) => {
+server.get("/api/notes", (req, res) => {
   res.json(JSON.parse(fs.readFileSync("./db/db.json", "utf8")));
 });
 
-app.post("/api/notes", (req, res) => {
+server.post("/api/notes", (req, res) => {
   req.body.id = Math.floor(Math.random() * 100000000);
   let newNote = req.body;
 
@@ -27,7 +27,7 @@ app.post("/api/notes", (req, res) => {
 
 });
 
-app.delete("/api/notes/:id", (req, res) => {
+server.delete("/api/notes/:id", (req, res) => {
   let id = parseInt(req.params.id);
   console.log(id);
 
