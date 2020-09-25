@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes</title>
+    <script src="https://code.jquery.com/jquery.js"></script>
 </head>
 <body>
-   <h1>Hello Hello Notes</h1>
-   <p></p>
-   <script>
-       $("h1").text($(path.join(_dirname,"index.html").tal1()))
-       $("h2").text($(path.join(_dirname,"index.html").tal2()))
-       $("h2").text($(path.join(_dirname,"index.html").tal3()))
-       $("h2").text($(path.join(_dirname,"index.html").tal4()))
-       $("h2").text($(path.join(_dirname,"index.html").tal5()))
-       $("h2").text($(path.join(_dirname,"index.html").tal6()))
-       $("h2").text($(path.join(_dirname,"index.html").tal7()))
-       $("h2").text($(path.join(_dirname,"index.html").tal8()))
-       $("h2").text($(path.join(_dirname,"index.html").tal9()))
-       $("h2").text($(path.join(_dirname,"index.html").tal10()))
-</script>
+<h1 id="json"></h1>
+    <script>
+     $.ajax({
+         method: "GET",
+         url: "/api/notes"
+
+     }).then(
+         function(res){
+             console.log(res)
+             for(var i = 0; i < res.length; i++) {
+             $("#json").append((i+1) + ". " + res[i].text +"<br>")
+             }
+         }
+     )
+    </script>
 </body>
 </html>

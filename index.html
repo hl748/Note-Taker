@@ -37,40 +37,42 @@
         <div id="t1" class="time col-md-2">8AM</div>
        
         <div class="content col-md-10" id="c1"><textarea id="ta1"></textarea><button id="b1" type="button" class="saveBtn btn-primary">Primary</button></div>
-       
+        <button id="button1">Delete</button>
       </div>
       <div class="row">
         <div id="t2" class="time col-md-2">9AM</div>
            
         <div class="content col-md-10" id="c2"><textarea id="ta2"></textarea><button id="b2" type="button" class="saveBtn btn-primary">Primary</button></div>
-   
+        <button id="button2">Delete</button>
       </div>
+
       <div class="row">
 
         <div id="t3" class="time col-md-2">10AM</div>
       
         <div class="content col-md-10" id="c3"><textarea id="ta3"></textarea><button id="b3" type="button" class="saveBtn btn-primary">Primary</button></div>
-   
+        <button id="button3">Delete</button>
       </div>
+      
       <div class="row">
         <div id="t4" class="time col-md-2">11AM</div>
     
         <div class="content col-md-10" id="c4"><textarea id="ta4"></textarea><button id="b4" type="button" class="saveBtn btn-primary">Primary</button></div>
-    
+        <button id="button4">Delete</button>
       </div>
       <div class="row">
   
         <div id="t5" class="time col-md-2">12AM</div>
       
         <div class="content col-md-10" id="c5"><textarea id="ta5"></textarea><button id="b5" type="button" class="saveBtn btn-primary">Primary</button></div>
-    
+        <button id="button5">Delete</button>
       </div>
       <div class="row">
   
         <div id="t6" class="time col-md-2">1PM</div>
      
         <div class="content col-md-10" id="c6"><textarea id="ta6"></textarea><button id="b6" type="button" class="saveBtn btn-primary">Primary</button></div>
-     
+        <button id="button6">Delete</button>
       </div>
 
       <div class="row">
@@ -78,27 +80,27 @@
         <div id="t7" class="time col-md-2">2PM</div>
    
         <div class="content col-md-10" id="c7"><textarea id="ta7"></textarea><button id="b7" type="button" class="saveBtn btn-primary">Primary</button></div>
-   
+        <button id="button7">Delete</button>
       </div>
       <div class="row">
   
         <div id="t8" class="time col-md-2">3PM</div>
     
         <div class="content col-md-10" id="c8"><textarea id="ta8"> </textarea><button id="b8" type="button" class="saveBtn btn-primary">Primary</button></div>
-   
+        <button id="button8">Delete</button>
       </div>
       <div class="row">
   
         <div id="t9" class="time col-md-2">4PM</div>
    
         <div class="content col-md-10" id="c9"><textarea id="ta9"></textarea><button id="b9" type="button" class="saveBtn btn-primary">Primary</button></div>
-      
+        <button id="button9">Delete</button>
       </div>
       <div class="row">
         <div id="t10" class="time col-md-2">5PM</div>
     
         <div class="content col-md-10" id="c10"><textarea id="ta10"></textarea><button id="b10" type="button" class="saveBtn btn-primary">Primary</button></div>
- 
+        <button id="button10">Delete</button>
       </div>
     </div>
 
@@ -238,42 +240,254 @@
     $("#b1").on("click",function() {
       var text1 = $("#ta1").val()
       localStorage.setItem("text1",text1)
+      console.log(text1)
+      $.ajax({method: "POST", 
+              url: "api/notes",data: {id: 1, text: text1}}).then(
+                function() {
+
+                }
+              )
+              
+    })
+    $("#button1").on("click", function() {
+      console.log("deleted input 1")
+      var text1 = $("#ta1").val()
+      $.ajax({
+              method: "DELETE",
+              url: "api/notes/1",
+              data: {id: 1, text: text1}
+
+            })
+              .then(
+                function() {
+
+                }
+              )
     })
     $("#b2").on("click",function() {
       var text2 = $("#ta2").val()
       localStorage.setItem("text2",text2)
+      $.ajax({method: "POST", 
+              url: "api/notes/:id",data: {id: 2, text: text2}}).then(
+                function() {
+
+                }
+              )
+    })
+    $("#button2").on("click", function() {
+      console.log("deleted input 1")
+      var text2 = $("#ta2").val()
+      $.ajax({
+              method: "DELETE",
+              url: "api/notes/2",
+              data: {id: 2, text: text2}
+
+            })
+              .then(
+                function() {
+
+                }
+              )
     })
     $("#b3").on("click",function() {
       var text3 = $("#ta3").val()
       localStorage.setItem("text3",text3)
+      $.ajax({method: "POST", 
+              url: "api/notes",data: {id: 3, text: text3}}).then(
+                function() {
+
+                }
+              )
+    })
+    $("#button3").on("click", function() {
+      console.log("deleted input 1")
+      var text3 = $("#ta3").val()
+      $.ajax({
+              method: "DELETE",
+              url: "api/notes/3",
+              data: {id: 3, text: text3}
+
+            })
+              .then(
+                function() {
+
+                }
+              )
     })
     $("#b4").on("click",function() {
       var text4 = $("#ta4").val()
       localStorage.setItem("text4",text4)
+      $.ajax({method: "POST", 
+              url: "api/notes",data: {id: 4, text: text4}}).then(
+                function() {
+
+                }
+              )
+    })
+    $("#button4").on("click", function() {
+      console.log("deleted input 1")
+      var text4 = $("#ta4").val()
+      $.ajax({
+              method: "DELETE",
+              url: "api/notes/4",
+              data: {id: 4, text: text4}
+
+            })
+              .then(
+                function() {
+
+                }
+              )
     })
     $("#b5").on("click",function() {
       var text5 = $("#ta5").val()
       localStorage.setItem("text5",text5)
+      $.ajax({method: "POST", 
+              url: "api/notes",data: {id: 5, text: text5}}).then(
+                function() {
+
+                }
+              )
+    })
+    $("#button5").on("click", function() {
+      console.log("deleted input 1")
+      var text5 = $("#ta5").val()
+      $.ajax({
+              method: "DELETE",
+              url: "api/notes/5",
+              data: {id: 5, text: text5}
+
+            })
+              .then(
+                function() {
+
+                }
+              )
     })
     $("#b6").on("click",function() {
       var text6 = $("#ta6").val()
       localStorage.setItem("text6",text6)
+      $.ajax({method: "POST", 
+              url: "api/notes",data: {id: 6, text: text6}}).then(
+                function() {
+
+                }
+              )
+    })
+    $("#button6").on("click", function() {
+      console.log("deleted input 1")
+      var text6 = $("#ta6").val()
+      $.ajax({
+              method: "DELETE",
+              url: "api/notes/6",
+              data: {id: 6, text: text6}
+
+            })
+              .then(
+                function() {
+
+                }
+              )
     })
     $("#b7").on("click",function() {
       var text7 = $("#ta7").val()
       localStorage.setItem("text7",text7)
+      $.ajax({method: "POST", 
+              url: "api/notes",data: {id: 7, text: text7}}).then(
+                function() {
+
+                }
+              )
+    })
+    $("#button7").on("click", function() {
+      console.log("deleted input 1")
+      var text7 = $("#ta7").val()
+      $.ajax({
+              method: "DELETE",
+              url: "api/notes/7",
+              data: {id: 7, text: text7}
+
+            })
+              .then(
+                function() {
+
+                }
+              )
     })
     $("#b8").on("click",function() {
       var text8 = $("#ta8").val()
       localStorage.setItem("text8",text8)
+      $.ajax({method: "POST", 
+              url: "api/notes",data: {id: 8, text: text8}}).then(
+                function() {
+
+                }
+              )
+    })
+    $("#button8").on("click", function() {
+      console.log("deleted input 1")
+      var text8 = $("#ta8").val()
+      $.ajax({
+              method: "DELETE",
+              url: "api/notes/8",
+              data: {id: 8, text: text8}
+
+            })
+              .then(
+                function() {
+
+                }
+              )
     })
     $("#b9").on("click",function() {
       var text9 = $("#ta9").val()
       localStorage.setItem("text9",text9)
+      $.ajax({method: "POST", 
+              url: "api/notes",data: {id: 9, text: text9}}).then(
+                function() {
+
+                }
+              )
+    })
+    $("#button9").on("click", function() {
+      console.log("deleted input 1")
+      var text9 = $("#ta9").val()
+      $.ajax({
+              method: "DELETE",
+              url: "api/notes/9",
+              data: {id: 9, text: text9}
+
+            })
+              .then(
+                function() {
+
+                }
+              )
     })
     $("#b10").on("click",function() {
       var text10 = $("#ta10").val()
       localStorage.setItem("text10",text10)
+      $.ajax({method: "POST", 
+              url: "api/notes",data: {id: 10, text: text10}}).then(
+                function() {
+
+                }
+              )
+    })
+    $("#button10").on("click", function() {
+      console.log("deleted input 1")
+      var text10 = $("#ta10").val()
+      $.ajax({
+              method: "DELETE",
+              url: "api/notes/10",
+              data: {id: 10, text: text10}
+
+            })
+              .then(
+                function() {
+
+                }
+              )
     })
   </script>
 </html>

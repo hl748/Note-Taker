@@ -2,40 +2,49 @@ const fs = require("fs")
 const express = require("express");
 const server = express();
 const path = require("path")
-const PORT = 3010
+const PORT = 3010 || process.env.PORT 
 
-server.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "index.html"))
-})
-
+server.use(express.json())
+server.use(express.urlencoded({extended: true}))
 server.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "notes.html"))
 })
 
 server.get("/api/notes", (req, res) => {
-  res.json(JSON.parse(fs.readFileSync("./db/db.json", "utf8")));
+  res.json(JSON.parse(fs.readFileSync("./db.json", "utf8")));
+  console.log(req.body)
 });
 
 server.post("/api/notes", (req, res) => {
-  req.body.id = Math.floor(Math.random() * 100000000);
+  console.log(req.body)
+  // req.body.id = Math.floor(Math.random() * 100000000);
   let newNote = req.body;
-
-  const savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8").toString());
+  const savedNotes = JSON.parse(fs.readFileSync("./db.json", "utf8"));
   savedNotes.push(newNote);
-  fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes));
+  fs.writeFileSync("./db.json", JSON.stringify(savedNotes));
   res.status(200).json({added: true});
 
 });
 
 server.delete("/api/notes/:id", (req, res) => {
-  let id = parseInt(req.params.id);
+  let id = req.params.id
   console.log(id);
 
 
-  let savedNotes = JSON.parse(fs.readFileSync("./db/db.json").toString());
+  let savedNotes = JSON.parse(fs.readFileSync("./db.json"));
 
   const notes = savedNotes.filter((note) => note.id !== id);
   console.log(notes);
-  fs.writeFileSync("./db/db.json", JSON.stringify(notes));
-  res.json();
+  fs.writeFileSync("./db.json", JSON.stringify(notes));
+  res.status(200).json({deleted: true});
 });
+
+
+
+server.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "index.html"))
+})
+
+server.listen(PORT, function(){
+  console.log("Api server now listening on port: " + PORT)
+})
