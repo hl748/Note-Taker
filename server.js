@@ -17,7 +17,6 @@ server.get("/api/notes", (req, res) => {
 
 server.post("/api/notes", (req, res) => {
   console.log(req.body)
-  // req.body.id = Math.floor(Math.random() * 100000000);
   let newNote = req.body;
   const savedNotes = JSON.parse(fs.readFileSync("./db.json", "utf8"));
   savedNotes.push(newNote);
@@ -28,13 +27,11 @@ server.post("/api/notes", (req, res) => {
 
 server.delete("/api/notes/:id", (req, res) => {
   let id = req.params.id
-  console.log(id);
 
 
   let savedNotes = JSON.parse(fs.readFileSync("./db.json"));
 
   const notes = savedNotes.filter((note) => note.id !== id);
-  console.log(notes);
   fs.writeFileSync("./db.json", JSON.stringify(notes));
   res.status(200).json({deleted: true});
 });

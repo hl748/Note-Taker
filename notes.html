@@ -15,7 +15,6 @@
 
      }).then(
          function(res){
-             console.log(res)
              for(var i = 0; i < res.length; i++) {
              $("#json").append((i+1) + ". " + res[i].text +"<br>")
              }
