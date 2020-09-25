@@ -2,7 +2,7 @@ const fs = require("fs")
 const express = require("express");
 const server = express();
 const path = require("path")
-const PORT = 3010 || process.env.PORT 
+const PORT = process.env.PORT || 3010
 
 server.use(express.json())
 server.use(express.urlencoded({extended: true}))
