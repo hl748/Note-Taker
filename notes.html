@@ -16,7 +16,7 @@
      }).then(
          function(res){
              for(var i = 0; i < res.length; i++) {
-             $("#json").append((i+1) + ". " + res[i].text + "ID: " + res[i].id +"<br>")
+             $("#json").append((i+1) + ". " + res[i].text + "(ID: " + res[i].id + ")" +"<br>")
              }
          }
      )
