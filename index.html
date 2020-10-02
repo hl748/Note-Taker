@@ -264,7 +264,7 @@
       var text2 = $("#ta2").val()
       localStorage.setItem("text2",text2)
       $.ajax({method: "POST", 
-              url: "api/notes/2",data: {id: 2, text: text2}
+              url: "api/notes",data: {id: 2, text: text2}
             }).then(
                 function() {
 
