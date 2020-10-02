@@ -22,7 +22,7 @@ server.post("/api/notes", (req, res) => {
   savedNotes.push(newNote);
   fs.writeFileSync("./db.json", JSON.stringify(savedNotes));
   res.status(200).json({added: true});
-
+  
 });
 
 server.delete("/api/notes/:id", (req, res) => {

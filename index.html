@@ -264,14 +264,15 @@
       var text2 = $("#ta2").val()
       localStorage.setItem("text2",text2)
       $.ajax({method: "POST", 
-              url: "api/notes/:id",data: {id: 2, text: text2}}).then(
+              url: "api/notes/2",data: {id: 2, text: text2}
+            }).then(
                 function() {
 
                 }
               )
     })
     $("#button2").on("click", function() {
-      console.log("deleted input 1")
+      console.log("deleted input 2")
       var text2 = $("#ta2").val()
       $.ajax({
               method: "DELETE",
